@@ -54,6 +54,66 @@ LinkedList.prototype.removeFirst = function(){
     }
 }
 
+LinkedList.prototype.enumerate = function(){
+    var result = [];
+    var current = this.head;
+    while(current != null){
+        result.push(current.value);
+        current = current.next;
+    }
+    return result;
+}
+
+LinkedList.prototype.find = function(n){
+   var current = this.head;
+   while(current != null){
+       if(current.value == n){
+           return current;
+       }
+       else{
+           current = current.next;
+       }
+   }
+   return undefined;
+}
+
+LinkedList.prototype.swap = function(x,y){
+    if(x == y){
+        return;
+    }
+    debugger;
+    var prevX = null;
+    var currX = this.head;
+    while(currX && currX.value != x){
+        prevX = currX;
+        currX = currX.next;
+    }
+    var prevY = null;
+    var currY = this.head; 
+    while(currY && currY.value != y){
+        prevY = currY;
+        currY = currY.next;
+    }
+    if(!currX || !currY){
+        return;
+    }
+    if(prevX){
+        prevX.next = currY;
+    }
+    else{
+        this.head = currY;
+    }
+    if(prevY){
+        prevY.next = currX;
+    }
+    else{
+        self.head = currX;
+    }
+    var temp = currX.next;
+    currX.next = currY.next;
+    currY.next = temp;
+}
+
 var ListNode = function(value){
     this.value = value;
     this.next = null;
@@ -74,8 +134,18 @@ list.addToFront(testNode5);
 list.addToBack(testNode2);
 list.addToBack(testNode1);
 list.addToFront(testNode6);
-list.removeLast();
-list.removeFirst();
 
-console.log(list);
+console.log("Initial List:", list.enumerate());
+
+list.removeLast();
+console.log("Remove last: ", list.enumerate());
+
+list.removeFirst();
+console.log("Remove First:", list.enumerate());
+
+console.log("Find Node containing 3:", list.find(3));
+
+list.swap(1,4);
+console.log("swap 1 and 4", list.enumerate())
+
 
