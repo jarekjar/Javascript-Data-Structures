@@ -36,7 +36,6 @@ LinkedList.prototype.removeLast = function(){
             while(current.next != this.tail){
                 current = current.next;
             }
-
             current.next = null;
             this.tail = current;
         }
@@ -50,6 +49,25 @@ LinkedList.prototype.removeFirst = function(){
         this.count--;
         if(this.count == 0){
             this.tail = null;
+        }
+    }
+}
+
+LinkedList.prototype.remove = function (node) {
+    debugger;
+    if(this.count != 0){
+        var current = this.head;
+        if(current.value == node){
+            this.head = this.head.next;
+            this.count--;
+            return;
+        }
+        while(current.value != node && current){
+            current = current.next;
+        }
+        if(current){
+            current = current.next.next;
+            this.count--;
         }
     }
 }
@@ -81,7 +99,6 @@ LinkedList.prototype.swap = function(x,y){
     if(x == y){
         return;
     }
-    debugger;
     var prevX = null;
     var currX = this.head;
     while(currX && currX.value != x){
@@ -146,6 +163,9 @@ console.log("Remove First:", list.enumerate());
 console.log("Find Node containing 3:", list.find(3));
 
 list.swap(1,4);
-console.log("swap 1 and 4", list.enumerate())
+console.log("swap 1 and 4", list.enumerate());
+
+list.remove(2);
+console.log("remove 4", list.enumerate());
 
 
