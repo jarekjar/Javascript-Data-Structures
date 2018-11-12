@@ -7,7 +7,7 @@ class TreeNode {
     add(node, value) {
         
         let newNode = new TreeNode(value);
-        if(value <= node.value){
+        if(value < node.value){
             if(!node.left){
                 node.left = newNode;
             }
