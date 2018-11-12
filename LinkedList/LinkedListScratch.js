@@ -5,6 +5,7 @@ class LinkedList{
         this.tail = null;
         this.count = 0;
     }
+
     addToFront(value) {
         let temp = this.head;
         this.head = value;
@@ -14,6 +15,7 @@ class LinkedList{
             this.tail = this.head;
         }
     }
+    
     addToBack(value){
         this.tail.next = value;
         this.tail = value;
